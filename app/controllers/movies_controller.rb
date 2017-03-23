@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews
   end
 
   def create
@@ -50,8 +51,9 @@ def movie_params
   params.require(:movie).permit(:title, :description)
 end
 
+
 def find_movie_and_check_permission
-  @movie = Movid.find(params[:id])
+  @movie = Movie.find(params[:id])
 
   if current_user != movie.user
     redirect_to root_path, alert: "you have no permission"
