@@ -2,17 +2,7 @@
   <h2> Edit Review </h2>
 
   <hr>
-  <%= form_for @movie do |f| %>
 
-  Movie
-  <%= f.text_field :title %>
-  <br>
-  Review
-  <br>
-  <%= f.text_area :description %>
-  <br>
-
-  <%= f.submit "Submit", :disable_with => "Submiting..." %>
-  <% end %>
+  <%= render "form" %>
 
 </div>
