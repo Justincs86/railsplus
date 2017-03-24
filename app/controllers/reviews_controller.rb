@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-      redirect_to review_path(@review)
+      redirect_to movie_path(@movie)
     else
       render :new
     end
