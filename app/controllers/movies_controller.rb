@@ -44,6 +44,33 @@ class MoviesController < ApplicationController
       redirect_to movies_path, alert: "Movie Deleted"
   end
 
+  def join
+    @movie = Movie.find(params[:id])
+
+   if !current_user.is_favorite_of?(@movie)
+     current_user.join!(@movie)
+     flash[:notice] = " Added favorite"
+   else
+     flash[:warning] = "Already added favorite"
+   end
+
+    redirect_to movie_path(@movie)
+  end
+
+  def quit
+    @movie = Movie.find(params[:id])
+
+    if current_user.is_favorite_of?(@movie)
+      current_user.quit!(@movie)
+      flash[:alert] = "Removed favorite"
+    else
+      flash[:warning] = "Not in favorite list"
+    end
+
+      redirect_to movie_path(@movie)
+  end
+
+
 
 private
 
